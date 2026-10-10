@@ -4,10 +4,14 @@ import forest from '@/assets/forest.jpg';
 import cinema from '@/assets/cinema.jpg';
 import haunted from '@/assets/haunted.jpg';
 import tapes from '@/assets/tapes.jpg';
+
+const carlosHero = 'https://images.unsplash.com/photo-1785220300684-3535eb52f335?auto=format&fit=crop&fm=jpg&q=82&w=1800';
+
 export const categories = ['All files', 'Current Case', 'Trial Watch', 'Unsolved', 'Horror', 'Haunted', 'Case File'] as const;
 export type Category = typeof categories[number];
 export type Post = { id: string; title: string; category: Category; date: string; image: string; status?: string; excerpt: string; location: string; year: string; note: string };
 export const posts: Post[] = [
+ {id:'carlos-vega',title:'Bad luck, on schedule: the Carlos Vega file',category:'Case File',date:'2026-10-10',image:carlosHero,status:'PATTERN DETECTED',excerpt:'Five wrecks. Familiar passengers. Familiar paperwork. When does bad luck start looking like a business model?',location:'Mesa Verde, Arizona · FICTIONAL',year:'2021–2026',note:'Read the collisions together, not one at a time.'},
  {id:'hollow-creek',title:'The house on Hollow Creek: what we know so far',category:'Current Case',date:'2026-10-09',image:house,status:'NEW INFORMATION',excerpt:'A quiet street. A missing neighbor. And a timeline that still doesn’t quite add up.',location:'Hollow Creek, Oregon',year:'2026',note:'Follow the timeline, not the rumors.'},
  {id:'jury-room',title:'Inside the jury room: the week that changed the trial',category:'Trial Watch',date:'2026-10-08',image:court,status:'VERDICT WATCH',excerpt:'The testimony, the turning points, and the questions we’re taking into next week.',location:'Millbrook, Vermont',year:'2026',note:'Next hearing: October 14.'},
  {id:'last-turn',title:'The last turn: a disappearance on Route 19',category:'Unsolved',date:'2026-10-06',image:forest,status:'UNSOLVED',excerpt:'One stretch of road. Thirty years of questions. We’re going back to the beginning.',location:'Cedar Falls, Washington',year:'1996',note:'Someone knows something.'},
