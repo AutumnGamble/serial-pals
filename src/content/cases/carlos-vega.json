@@ -1,0 +1,81 @@
+{
+  "id": "carlos-vega",
+  "title": "Bad luck, on schedule: the Carlos Vega file",
+  "category": "Case File",
+  "date": "2026-10-10",
+  "image": "https://images.unsplash.com/photo-1785220300684-3535eb52f335?auto=format&fit=crop&fm=jpg&q=82&w=1800",
+  "status": "PATTERN DETECTED",
+  "excerpt": "Five wrecks. Familiar passengers. Familiar paperwork. When does bad luck start looking like a business model?",
+  "location": "Mesa Verde, Arizona · FICTIONAL",
+  "year": "2021–2026",
+  "note": "Read the collisions together, not one at a time.",
+  "fictional": true,
+  "featured": true,
+  "currentCase": false,
+  "onRadar": false,
+  "sections": [
+    {
+      "type": "editorial",
+      "label": "01 / THE HOOK",
+      "heading": "Carlos Vega has terrible luck.",
+      "body": "Five wrecks in five years. Two rear-end collisions. One nighttime rollover. One hit while parked. One intersection crash involving a witness who somehow knew Carlos before the police arrived.\n\nEvery time, Carlos walked away. Every time, a claim followed. And every time, the details were just plausible enough to look ordinary when viewed alone.\n\nThe problem starts when you put the files next to each other: the same repair shop, the same medical clinic, repeated passengers, similar injury language, vehicles acquired shortly before crashes, claims filed quickly, and photographs taken even faster.\n\nCarlos says he is simply unlucky. The pattern says otherwise."
+    },
+    {
+      "type": "editorial",
+      "label": "02 / EDITORIAL",
+      "heading": "Accident is a comforting word.",
+      "body": "It means nobody planned it. Nobody wanted it. Nobody looked at a guardrail, a parking lot, or another car and saw a payday.\n\nCarlos’s fictional file becomes interesting not because any single collision is impossible, but because the same kinds of coincidences keep showing up around him.\n\nInsurance fraud rarely arrives wearing a sign that says fraud. It usually looks like paperwork: a sore neck, a damaged bumper, a witness, a tow bill, a story ordinary enough to be believed.\n\nSometimes the most revealing evidence is not a smoking gun. It is repetition."
+    },
+    {
+      "type": "timeline",
+      "label": "03 / COLLISION TIMELINE",
+      "heading": "Five accidents. One increasingly familiar cast.",
+      "items": [
+        {"date":"MAR 2021","title":"Crash #1 — rear-ended","text":"Carlos reports shoulder pain. The car is repaired. Nothing about the claim appears extraordinary on its own."},
+        {"date":"NOV 2022","title":"Crash #2 — nighttime intersection","text":"Elena Ruiz is riding with Carlos. Both make injury claims. The same clinic appears in the paperwork."},
+        {"date":"AUG 2023","title":"Crash #3 — rollover","text":"Carlos is driving a car owned by Mateo Silva. He says he swerved to avoid an animal. No independent witness is identified."},
+        {"date":"FEB 2025","title":"Crash #4 — hit while parked","text":"Carlos reports a hit-and-run. Elena later appears in the related injury paperwork."},
+        {"date":"JUN 2026","title":"Crash #5 — low-speed collision","text":"A witness backs Carlos’s account. A later records check links that witness to Mateo."},
+        {"date":"JUL 2026","title":"Pattern review begins","text":"An insurer stops reading the claims one at a time and starts comparing names, clinics, vehicles, and dates."},
+        {"date":"SEP 2026","title":"The stories stop matching","text":"Separate accounts that sounded plausible alone begin to conflict when investigators place them side by side."}
+      ]
+    },
+    {
+      "type": "image",
+      "label": "EXHIBIT 02",
+      "heading": "The paperwork",
+      "image": "/serial-pals/assets/tapes-Cb65KEwo.jpg",
+      "caption": "ILLUSTRATIVE RECORDS IMAGE · FICTIONAL RECONSTRUCTION"
+    },
+    {
+      "type": "analysis",
+      "label": "04 / CASE ANALYSIS",
+      "heading": "The pattern is the story.",
+      "body": "Pattern 01 — Frequency\nFive claimed collisions in roughly five years would not prove fraud. It would, however, give an investigator a reason to compare the files rather than treating each event as isolated.\n\nPattern 02 — Familiar faces\nThree crashes include one of the same two passengers. Real staged-collision schemes can involve coordinated drivers, passengers, and witnesses assigned different roles from claim to claim.\n\nPattern 03 — Medical claims\nThe fictional treatment records repeatedly route through the same clinic for similar soft-tissue complaints. Repetition is not proof of wrongdoing, but it is exactly the kind of relationship investigators would map.\n\nPattern 04 — The cars\nCarlos favors inexpensive used vehicles purchased or insured shortly before incidents. Ownership dates, coverage changes, prior damage, repair invoices, and salvage history could become important context.\n\nPattern 05 — The helpful witness\nThe fifth collision becomes the hinge point: a supposedly independent witness later turns out to have a connection to someone already in the file."
+    },
+    {
+      "type": "dossiers",
+      "label": "05 / CHARACTER DOSSIERS",
+      "heading": "The recurring names.",
+      "people": [
+        {"name":"Carlos Vega","role":"Central subject · FICTIONAL","bio":"38. Freelance auto-detailer. Charming, cooperative, and unusually fluent in the mechanics of a claim. He tends to have photographs and paperwork ready before anyone asks."},
+        {"name":"Elena Ruiz","role":"Recurring passenger · FICTIONAL","bio":"Carlos’s cousin. Appears in Crash #2, #4, and #5, with similar injury complaints appearing more than once."},
+        {"name":"Mateo Silva","role":"Friend / occasional driver · FICTIONAL","bio":"Owns the vehicle in Crash #3 and appears in the orbit of the witness from Crash #5. His role changes from file to file."},
+        {"name":"Dr. Adrian Bell","role":"Medical provider · FICTIONAL","bio":"Appears repeatedly in treatment records. The file makes no allegation of misconduct; repeated appearance alone is not evidence of wrongdoing."},
+        {"name":"Nina Park","role":"Insurance investigator · FICTIONAL","bio":"The person who stops reading five accidents and starts reading one story."}
+      ]
+    },
+    {
+      "type": "sources",
+      "label": "06 / RELATED READING & SOURCES",
+      "heading": "Real cases behind the fictional framework.",
+      "body": "Carlos is invented. These links are real background material on staged collisions and insurance-fraud investigations.",
+      "links": [
+        {"title":"FBI — Staged Accident Ring","url":"https://www.fbi.gov/news/stories/staged-accident-ring","note":"Background on a real staged-crash investigation."},
+        {"title":"NICB — Staged & Caused Accidents","url":"https://www.nicb.org/prevent-fraud-theft/staged-and-caused-accidents","note":"Overview of staged crashes, planted witnesses, coordinated participants, and injury claims."},
+        {"title":"FBI — Investigating Insurance Fraud","url":"https://www.fbi.gov/news/stories/investigating-insurance-fraud","note":"Federal background on insurance-fraud investigations."},
+        {"title":"NICB — Paper Accidents","url":"https://www.nicb.org/news/regional-news/paper-accidents","note":"A real-world example of suspicious claims involving alleged staged or fabricated collisions."}
+      ]
+    }
+  ]
+}
