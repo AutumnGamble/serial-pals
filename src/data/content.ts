@@ -5,23 +5,75 @@ import cinema from '@/assets/cinema.jpg';
 import haunted from '@/assets/haunted.jpg';
 import tapes from '@/assets/tapes.jpg';
 
-const carlosHero = 'https://images.unsplash.com/photo-1785220300684-3535eb52f335?auto=format&fit=crop&fm=jpg&q=82&w=1800';
-
 export const categories = ['All files', 'Current Case', 'Trial Watch', 'Unsolved', 'Horror', 'Haunted', 'Case File'] as const;
 export type Category = typeof categories[number];
-export type Post = { id: string; title: string; category: Category; date: string; image: string; status?: string; excerpt: string; location: string; year: string; note: string };
-export const posts: Post[] = [
- {id:'carlos-vega',title:'Bad luck, on schedule: the Carlos Vega file',category:'Case File',date:'2026-10-10',image:carlosHero,status:'PATTERN DETECTED',excerpt:'Five wrecks. Familiar passengers. Familiar paperwork. When does bad luck start looking like a business model?',location:'Mesa Verde, Arizona · FICTIONAL',year:'2021–2026',note:'Read the collisions together, not one at a time.'},
- {id:'hollow-creek',title:'The house on Hollow Creek: what we know so far',category:'Current Case',date:'2026-10-09',image:house,status:'NEW INFORMATION',excerpt:'A quiet street. A missing neighbor. And a timeline that still doesn’t quite add up.',location:'Hollow Creek, Oregon',year:'2026',note:'Follow the timeline, not the rumors.'},
- {id:'jury-room',title:'Inside the jury room: the week that changed the trial',category:'Trial Watch',date:'2026-10-08',image:court,status:'VERDICT WATCH',excerpt:'The testimony, the turning points, and the questions we’re taking into next week.',location:'Millbrook, Vermont',year:'2026',note:'Next hearing: October 14.'},
+export type TimelineItem = { date: string; title: string; text: string };
+export type DossierPerson = { name: string; role: string; bio: string; image?: string };
+export type SourceLink = { title: string; url: string; note?: string };
+export type ContentSection = {
+  type: 'editorial' | 'analysis' | 'timeline' | 'dossiers' | 'image' | 'sources';
+  label?: string;
+  heading?: string;
+  body?: string;
+  image?: string;
+  caption?: string;
+  items?: TimelineItem[];
+  people?: DossierPerson[];
+  links?: SourceLink[];
+};
+export type Post = {
+  id: string;
+  title: string;
+  category: Category;
+  date: string;
+  image: string;
+  status?: string;
+  excerpt: string;
+  location: string;
+  year: string;
+  note: string;
+  fictional?: boolean;
+  featured?: boolean;
+  currentCase?: boolean;
+  onRadar?: boolean;
+  sections?: ContentSection[];
+};
+
+const managedModules = import.meta.glob('../content/cases/*.json', { eager: true, import: 'default' }) as Record<string, Partial<Post>>;
+export const managedCases: Post[] = Object.values(managedModules).map((entry) => ({
+  id: String(entry.id || ''),
+  title: String(entry.title || 'Untitled file'),
+  category: (entry.category || 'Case File') as Category,
+  date: String(entry.date || '1970-01-01'),
+  image: String(entry.image || ''),
+  status: entry.status ? String(entry.status) : undefined,
+  excerpt: String(entry.excerpt || ''),
+  location: String(entry.location || ''),
+  year: String(entry.year || ''),
+  note: String(entry.note || ''),
+  fictional: Boolean(entry.fictional),
+  featured: Boolean(entry.featured),
+  currentCase: Boolean(entry.currentCase),
+  onRadar: Boolean(entry.onRadar),
+  sections: Array.isArray(entry.sections) ? entry.sections as ContentSection[] : [],
+})).filter((entry) => entry.id);
+
+const legacyPosts: Post[] = [
+ {id:'hollow-creek',title:'The house on Hollow Creek: what we know so far',category:'Current Case',date:'2026-10-09',image:house,status:'NEW INFORMATION',excerpt:'A quiet street. A missing neighbor. And a timeline that still doesn’t quite add up.',location:'Hollow Creek, Oregon',year:'2026',note:'Follow the timeline, not the rumors.',currentCase:true},
+ {id:'jury-room',title:'Inside the jury room: the week that changed the trial',category:'Trial Watch',date:'2026-10-08',image:court,status:'VERDICT WATCH',excerpt:'The testimony, the turning points, and the questions we’re taking into next week.',location:'Millbrook, Vermont',year:'2026',note:'Next hearing: October 14.',currentCase:true},
  {id:'last-turn',title:'The last turn: a disappearance on Route 19',category:'Unsolved',date:'2026-10-06',image:forest,status:'UNSOLVED',excerpt:'One stretch of road. Thirty years of questions. We’re going back to the beginning.',location:'Cedar Falls, Washington',year:'1996',note:'Someone knows something.'},
  {id:'final-girl',title:'The final girl isn’t finished with us yet',category:'Horror',date:'2026-10-04',image:cinema,excerpt:'Why we keep coming back to horror’s most stubborn survivor. Popcorn strongly encouraged.',location:'After-dark screening room',year:'2026',note:'Spoilers ahead. You’ve been warned.'},
- {id:'blackwood',title:'Checking in at Blackwood House. Sleeping? Unlikely.',category:'Haunted',date:'2026-10-02',image:haunted,status:'AFTER DARK',excerpt:'An old house, a very opinionated staircase, and a weekend we’re still talking about.',location:'Blackwood, Massachusetts',year:'2026',note:'Bring a friend. Maybe two.'},
- {id:'missing-tape',title:'The missing tape: listening between the lines',category:'Case File',date:'2026-09-29',image:tapes,status:'DEEP DIVE',excerpt:'A forgotten recording sends us down a rabbit hole of memory, evidence, and everything in between.',location:'Bellweather, Maine',year:'1988',note:'Revisit the original recording.'},
+ {id:'blackwood',title:'Checking in at Blackwood House. Sleeping? Unlikely.',category:'Haunted',date:'2026-10-02',image:haunted,status:'AFTER DARK',excerpt:'An old house, a very opinionated staircase, and a weekend we’re still talking about.',location:'Blackwood, Massachusetts',year:'2026',note:'Bring a friend. Maybe two.',onRadar:true},
+ {id:'missing-tape',title:'The missing tape: listening between the lines',category:'Case File',date:'2026-09-29',image:tapes,status:'DEEP DIVE',excerpt:'A forgotten recording sends us down a rabbit hole of memory, evidence, and everything in between.',location:'Bellweather, Maine',year:'1988',note:'Revisit the original recording.',onRadar:true},
 ];
+
+export const posts: Post[] = [...managedCases, ...legacyPosts];
+export function getManagedCase(id: string) { return managedCases.find((post) => post.id === id); }
 export function getPosts(category: Category = 'All files', query = '') {
  return posts.filter(p => (category === 'All files' || p.category === category) && `${p.title} ${p.location} ${p.category}`.toLowerCase().includes(query.toLowerCase())).sort((a,b)=>b.date.localeCompare(a.date));
 }
+export function getCurrentCases() { return posts.filter((post) => post.currentCase || post.category === 'Current Case' || post.category === 'Trial Watch').sort((a,b)=>b.date.localeCompare(a.date)); }
+export function getRadarPosts() { return posts.filter((post) => post.onRadar).sort((a,b)=>b.date.localeCompare(a.date)); }
 export function formatDate(date: string) { return new Intl.DateTimeFormat('en-US',{month:'short',day:'2-digit',year:'numeric',timeZone:'UTC'}).format(new Date(`${date}T12:00:00Z`)); }
 export const pals = [
  {name:'Autumn',initials:'AG',role:'The rabbit-hole regular',bio:'Always has one more question, three open tabs, and a coffee that went cold an hour ago.',interests:'Case deep dives · Unsolved mysteries',appearance:'The house on Hollow Creek',tone:'violet'},
