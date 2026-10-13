@@ -1,0 +1,105 @@
+backend:
+  name: github
+  repo: AutumnGamble/serial-pals
+  branch: main
+
+site_url: https://autumngamble.github.io/serial-pals/
+display_url: https://autumngamble.github.io/serial-pals/
+logo_url: https://autumngamble.github.io/serial-pals/favicon.png
+
+media_folder: public/uploads
+public_folder: /serial-pals/uploads
+
+publish_mode: simple
+
+collections:
+  - name: cases
+    label: Case Files
+    label_singular: Case File
+    folder: src/content/cases
+    create: true
+    delete: true
+    extension: json
+    format: json
+    identifier_field: title
+    summary: "{{title}} · {{category}} · {{date}}"
+    sortable_fields: [date, title, category]
+    view_filters:
+      - label: Featured
+        field: featured
+        pattern: true
+      - label: Current Cases
+        field: currentCase
+        pattern: true
+      - label: On the Radar
+        field: onRadar
+        pattern: true
+    fields:
+      - { label: Slug / ID, name: id, widget: string, hint: "Lowercase URL name, e.g. carlos-vega. Don't change after publishing unless you want a new URL." }
+      - { label: Title, name: title, widget: string }
+      - label: Category
+        name: category
+        widget: select
+        options: [Current Case, Trial Watch, Unsolved, Horror, Haunted, Case File]
+      - { label: Publish Date, name: date, widget: datetime, format: "YYYY-MM-DD", date_format: "MMM D, YYYY", time_format: false }
+      - { label: Status / Stamp, name: status, widget: string, required: false, hint: "Examples: NEW INFORMATION, VERDICT WATCH, UNSOLVED, PATTERN DETECTED" }
+      - { label: Excerpt, name: excerpt, widget: text }
+      - { label: Location, name: location, widget: string }
+      - { label: Year / Date Range, name: year, widget: string }
+      - { label: Pal's Note, name: note, widget: text, required: false }
+      - { label: Hero Image, name: image, widget: image, choose_url: true }
+      - { label: Fictional / Sample, name: fictional, widget: boolean, default: false, required: false }
+      - { label: Featured on Home, name: featured, widget: boolean, default: false, required: false }
+      - { label: Current Case, name: currentCase, widget: boolean, default: false, required: false }
+      - { label: On the Radar, name: onRadar, widget: boolean, default: false, required: false }
+      - label: Page Sections
+        name: sections
+        widget: list
+        collapsed: false
+        minimize_collapsed: true
+        summary: "{{fields.label}} — {{fields.heading}}"
+        hint: "Drag sections to rearrange the article. Fill only the fields needed for that section type."
+        fields:
+          - label: Section Type
+            name: type
+            widget: select
+            options:
+              - { label: Editorial / Text, value: editorial }
+              - { label: Case Analysis, value: analysis }
+              - { label: Timeline, value: timeline }
+              - { label: Character Dossiers, value: dossiers }
+              - { label: Image / Exhibit, value: image }
+              - { label: Sources / Linked Articles, value: sources }
+          - { label: Small Label, name: label, widget: string, required: false, hint: "Example: 04 / CASE ANALYSIS" }
+          - { label: Heading, name: heading, widget: string, required: false }
+          - { label: Body, name: body, widget: text, required: false, hint: "Use blank lines between paragraphs." }
+          - { label: Section Image, name: image, widget: image, choose_url: true, required: false }
+          - { label: Image Caption, name: caption, widget: string, required: false }
+          - label: Timeline Items
+            name: items
+            widget: list
+            required: false
+            collapsed: true
+            fields:
+              - { label: Date, name: date, widget: string }
+              - { label: Title, name: title, widget: string }
+              - { label: Description, name: text, widget: text }
+          - label: Character Dossiers
+            name: people
+            widget: list
+            required: false
+            collapsed: true
+            fields:
+              - { label: Name, name: name, widget: string }
+              - { label: Role, name: role, widget: string }
+              - { label: Bio / Notes, name: bio, widget: text }
+              - { label: Photo, name: image, widget: image, choose_url: true, required: false }
+          - label: Links / Sources
+            name: links
+            widget: list
+            required: false
+            collapsed: true
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: URL, name: url, widget: string }
+              - { label: Source Note, name: note, widget: text, required: false }
